@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Lab Simone kelly</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab. Simone Kelly - TPD (04466)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .contact-info {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .service-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .service-table th, .service-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .service-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+        .service-table td {
+            color: #555;
+        }
+        .note, .total {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+        .total {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .whatsapp-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #25d366;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function calcularTotal() {
+            let checkboxes = document.querySelectorAll('.service-checkbox');
+            let total = 0;
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    total += parseFloat(checkbox.value);
+                }
+            });
+            
+            document.getElementById('total').textContent = 'Total: R$' + total.toFixed(2);
+            return total;
+        }
+
+        function enviarWhatsapp() {
+            let checkboxes = document.querySelectorAll('.service-checkbox');
+            let total = calcularTotal();
+            let selectedServices = "";
+
+            checkboxes.forEach((checkbox, index) => {
+                if (checkbox.checked) {
+                    let serviceRow = checkbox.closest("tr");
+                    let serviceName = serviceRow.cells[1].innerText;
+                    let servicePrice = serviceRow.cells[2].innerText;
+                    selectedServices += `- ${serviceName} (${servicePrice})\n`;
+                }
+            });
+
+            let mensagem = `Olá, gostaria de solicitar informações sobre os seguintes serviços:\n\n${selectedServices}\nValor total: R$${total.toFixed(2)}`;
+            window.open(`https://wa.me/5534988308578?text=${encodeURIComponent(mensagem)}`, '_blank');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lab. Simone Kelly - TPD (04466)</h1>
+        
+        <div class="contact-info">
+            <p>Telefones: (34) 98830-8578 ou 3822-5936</p>
+            <p>Email: labsimonekelly04466@gmail.com</p>
+        </div>
+        
+        <table class="service-table">
+            <tr>
+                <th>Selecionar</th>
+                <th>Serviço</th>
+                <th>Preço</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>Prótese Total (Dentes à Parte)</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="300" onclick="calcularTotal()"></td>
+                <td>Prótese Caracterizada (Dentes à Parte)</td>
+                <td>R$300</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="300" onclick="calcularTotal()"></td>
+                <td>PPR Flexite (Dentes à Parte)</td>
+                <td>R$300</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>PPR Provisória com Grampo Ortodôntico (Dentes à Parte)</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>Montagem Acrilização de Roth Metálico (Dentes à Parte)</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="500" onclick="calcularTotal()"></td>
+                <td>Roth Completo - Metálico/Montagem de Dentes e Acrilização</td>
+                <td>R$500</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>Provisório sobre Implante</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>Onlay (Resina)</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="80" onclick="calcularTotal()"></td>
+                <td>Placa de Bruxismo (Plastivac)</td>
+                <td>R$80</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>Placa de Bruxismo Acrílica</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="60" onclick="calcularTotal()"></td>
+                <td>Placa Clareamento (O Par)</td>
+                <td>R$60</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="80" onclick="calcularTotal()"></td>
+                <td>Conserto de PT e PPR</td>
+                <td>R$80</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="350" onclick="calcularTotal()"></td>
+                <td>Coroa sobre Implante Metal Cerâmica</td>
+                <td>R$350</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="80" onclick="calcularTotal()"></td>
+                <td>Provisório Autopolimerizável</td>
+                <td>R$80</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>Provisório Prensado</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="120" onclick="calcularTotal()"></td>
+                <td>Reembasamento</td>
+                <td>R$120</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="800" onclick="calcularTotal()"></td>
+                <td>Protocolo Completo</td>
+                <td>R$800</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="49" onclick="calcularTotal()"></td>
+                <td>Dentes Trilux (Por Placa)</td>
+                <td>R$49</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="service-checkbox" value="16" onclick="calcularTotal()"></td>
+                <td>Dentes Biotonic (Por Placa)</td>
+                <td>R$16</td>
+            </tr>
+        </table>
+
+        <p id="total" class="total">Total: R$0.00</p>
+        
+        <a href="#" class="whatsapp-link" onclick="enviarWhatsapp()">Enviar para o WhatsApp</a>
+    </div>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
